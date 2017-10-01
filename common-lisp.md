@@ -16,6 +16,7 @@ Predicate | Description
 `null`|It takes one argument and returns `T` if the argument evaluates to nil, otherwise it returns `NIL`.
 `numberp`|It takes one argument and returns `T` if the argument is a number() or `NIL` if otherwise.
 `arrayp`|It takes one argument and returns `T` if the argument is an array object otherwise it returns `NIL`.
+
 There are other functions for checking type of argument: 
 * `symbolp`
 * `integerp`
