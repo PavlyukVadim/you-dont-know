@@ -2,8 +2,9 @@
 
   1. [Types](#types)
   1. [Create table](#create-table)
-  1. [Joins](#joins)
   1. [Update](#update)
+  1. [Insert](#insert)
+  1. [Joins](#joins)
   1. [Window Functions](#window-functions)
 
   
@@ -41,7 +42,7 @@
 ## Update
 UPDATE changes the values of the specified columns in all rows that satisfy the condition. Only the columns to be modified need be mentioned in the SET clause; columns not explicitly modified retain their previous values.
 
-Examples:
+#### Examples:
 
 ```sql
   UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
@@ -59,6 +60,46 @@ Perform operation, using a sub-select in the WHERE clause:
 ```sql
   UPDATE employees SET sales_count = sales_count + 1 WHERE id =
   (SELECT sales_person FROM accounts WHERE name = 'Acme Corporation');
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## Insert
+INSERT inserts new rows into a table. One can insert one or more rows specified by value expressions, or zero or more rows resulting from a query.
+
+#### Examples:
+
+Insert a single row into table films:
+
+```sql
+  INSERT INTO films VALUES
+    ('UA502', 'Bananas', 105, '1971-07-13', 'Comedy', '82 minutes');
+```
+In this example, the len column is omitted and therefore it will have the default value:
+
+```sql
+  INSERT INTO films (code, title, did, date_prod, kind)
+    VALUES ('T_601', 'Yojimbo', 106, '1961-06-16', 'Drama');
+```
+To insert a row consisting entirely of default values:
+
+```sql
+  INSERT INTO films DEFAULT VALUES;
+```
+
+To insert multiple rows using the multirow VALUES syntax:
+
+```sql
+  INSERT INTO films (code, title, did, date_prod, kind) VALUES
+    ('B6717', 'Tampopo', 110, '1985-02-10', 'Comedy'),
+    ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
+```
+
+This example inserts some rows into table films from a table tmp_films with the same column layout as films:
+
+```sql
+  INSERT INTO films SELECT * FROM tmp_films WHERE date_prod < '2004-05-07';
 ```
 
 **[⬆ back to top](#table-of-contents)**
