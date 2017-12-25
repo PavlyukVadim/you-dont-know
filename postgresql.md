@@ -3,6 +3,7 @@
   1. [Types](#types)
   1. [Create table](#create-table)
   1. [Update](#update)
+  1. [Alter](#alter)
   1. [Insert](#insert)
   1. [Joins](#joins)
   1. [Window Functions](#window-functions)
@@ -60,6 +61,22 @@ Perform operation, using a sub-select in the WHERE clause:
 ```sql
   UPDATE employees SET sales_count = sales_count + 1 WHERE id =
   (SELECT sales_person FROM accounts WHERE name = 'Acme Corporation');
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## Alter
+ALTER TABLE changes the definition of an existing table.
+
+#### Examples:
+
+To change the types of two existing columns in one operation:
+
+```sql
+  ALTER TABLE distributors
+    ALTER COLUMN address TYPE varchar(80),
+    ALTER COLUMN name TYPE varchar(100);
 ```
 
 **[⬆ back to top](#table-of-contents)**
